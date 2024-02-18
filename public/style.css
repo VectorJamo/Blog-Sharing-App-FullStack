@@ -1,3 +1,13 @@
 :root {
-    font-family: 'Merriweather';
+
+    --color-black: rgb(35, 35, 35);
+    --color-white: rgb(220, 220, 220);
+    --color-blue: rgb(53, 192, 192);
+    
+    --site-font-family: 'Merriweather';
+
+    font-family: var(--site-font-family);
+
+    color: var(--color-white);
+    background: var(--color-black);
 }
