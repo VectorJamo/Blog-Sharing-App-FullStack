@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header') %>
+<body>
+    <section>
+        <h1>Register an account</h1>
+        <hr>
+    </section>
+    <main>
+        <form action="/register" method="POST">
+            <div class="input-component">
+                <label for="fname">First Name</label>
+                <hr>
+                <input type="text" placeholder="first name">
+            </div>
+            <div class="input-component">
+                <label for="lname">Last Name</label>
+                <hr>
+                <input type="text" placeholder="last name">
+            </div>
+            <div class="input-component">
+                <label for="username">Username</label>
+                <hr>
+                <input type="text" placeholder="username">
+            </div>
+            <div class="input-component">
+                <label for="email">E-mail</label>
+                <hr>
+                <input type="text" placeholder="example@company.com">
+            </div>
+            <div class="input-component">
+                <label for="password">Password</label>
+                <hr>
+                <input type="password" placeholder="password">
+            </div>
+            <div class="button-wrapper">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </main>
+    <div class="foot-text">
+        <span>Go back to <a href="/login">login</a> page.</span>
+    </div>
+    
+</body>
+</html>

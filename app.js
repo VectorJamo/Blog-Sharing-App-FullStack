@@ -14,5 +14,11 @@ app.use(express.static('public'))
 
 // Handle GET requests from client
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Login Page'})
+    res.redirect('login')
+})
+app.get('/login', (req, res) => {
+    res.render('login', {title: 'Login Page', style: '/login-reg-style.css'})
+})
+app.get('/register', (req, res) => {
+    res.render('register', {title: 'Register an account', style: '/login-reg-style.css'})
 })

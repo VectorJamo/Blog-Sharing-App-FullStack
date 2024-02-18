@@ -26,12 +26,13 @@ hr {
 body {
     color: var(--color-white);
     background: var(--color-black);
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
 }
 main {
     width: 300px;
@@ -90,4 +91,8 @@ input[type='text']:focus, input[type='password']:focus {
 }
 input::placeholder {
     font-size: 14px;
+}
+
+.foot-text a {
+    color: var(--color-blue);
 }
