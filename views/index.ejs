@@ -2,7 +2,28 @@
 <html lang="en">
     <%- include('./partials/header') %>
 <body>
-    <h1>Welcome to my website.</h1>
-    <p>This is some text.</p>
+
+    <section>
+        <h1>Sign In</h1>
+        <hr>
+    </section>
+    <main>
+        <form action="/login" method="POST">
+            <div class="input-component">
+                <label for="username">Username</label>
+                <hr>
+                <input type="text" placeholder="username">
+            </div>
+            <div class="input-component">
+                <label for="password">Password</label>
+                <hr>
+                <input type="password" placeholder="password">
+            </div>
+            <div class="button-wrapper">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </main>
+    
 </body>
 </html>

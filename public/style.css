@@ -2,12 +2,92 @@
 
     --color-black: rgb(35, 35, 35);
     --color-white: rgb(220, 220, 220);
-    --color-blue: rgb(53, 192, 192);
+    --color-blue: rgb(48, 167, 167);
     
     --site-font-family: 'Merriweather';
+    --site-border-radius: 0.25rem;
+
+    font-size: 16px;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 
     font-family: var(--site-font-family);
+}
 
+hr {
+    box-shadow: 0px 0px 10px var(--color-blue);
+    margin-bottom: 1rem;
+}
+
+body {
     color: var(--color-white);
     background: var(--color-black);
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+main {
+    width: 300px;
+    margin: 1rem;
+    flex-shrink: 1;
+    flex-grow: 0;
+
+    box-shadow: 0px 0px 10px var(--color-blue);
+    border-radius: var(--site-border-radius);
+    padding: 1rem;
+}
+section {
+    width: 300px;
+    text-align: center;
+}
+section hr {
+    height: 2px;
+    margin: 0.25rem 2rem;
+}
+.input-component {
+    margin: 1.5rem 0rem;
+}
+
+input[type='text'], input[type='password'] {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 12px;
+    padding: 0.5rem;
+    border-radius: calc(var(--site-border-radius)*1.5);
+
+    border: none;
+    background: var(--color-white);
+}
+.button-wrapper {
+    text-align: center;
+}
+input[type='submit'] {
+    border: 2px solid var(--color-blue);
+    background: none;
+    color: var(--color-white);
+    font-size: 18px;
+    border-radius: calc(var(--site-border-radius)*1.5);
+    margin-top: 3rem;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+
+    transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+input[type='submit']:hover {
+    background: var(--color-blue);
+    color: var(--color-black);
+}
+input[type='text']:focus, input[type='password']:focus {
+    outline: none;
+}
+input::placeholder {
+    font-size: 14px;
 }
