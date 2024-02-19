@@ -1,22 +1,25 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const blog_model = require('./schemas/blog-schema')
+const fs = require('fs')
 
 const app = express()
 
-const dbURI = 'mongodb+srv://suraj_neupane:surajdatabase@node-database.ziayke1.mongodb.net/node-database'
-
-// Connect to the database
-mongoose.connect(dbURI)
-    .then(result => {
-        // If connection was made, start the server
-        app.listen(3000, () => {
-            console.log('Server is now listening for requests on Port 3000.')
-        })                
-    })
-    .catch(error => {
-        console.log(error)
-    })
+// Read the database URL from the file
+fs.readFile('private/dbURI.txt', { encoding: 'utf8' }, (error, data) => {
+    const dbURI = data
+    // Connect to the database
+    mongoose.connect(dbURI)
+        .then(result => {
+            // If connection was made, start the server
+            app.listen(3000, () => {
+                console.log('Server is now listening for requests on Port 3000.')
+            })                
+        })
+        .catch(error => {
+            console.log(error)
+        })
+})
 
 // Set up our view engine
 app.set('view engine', 'ejs')
@@ -24,38 +27,52 @@ app.set('view engine', 'ejs')
 // Send some static files to the server initially
 app.use(express.static('public'))
 
-// User defined middlewear functions
-app.use((req, res, next) => {
-    // Display all the data currently in the database collection
-    blog_model.find({})
-        .then(result => {
-            console.log(result)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    next()
-})
+// Allow us to retrieve data from POST requests
+app.use(express.urlencoded( { extended: true }))
 
 // Handle GET requests from client
 app.get('/', (req, res) => {
     res.redirect('login')
 })
 app.get('/login', (req, res) => {
-    res.render('login', {title: 'Login Page', style: '/login-reg-style.css'})
+    res.render('login', {title: 'Login Page', style: '/login-style.css'})
 })
 app.get('/register', (req, res) => {
-    res.render('register', {title: 'Register an account', style: '/login-reg-style.css'})
+    res.render('register', {title: 'Register an account', style: '/reg-style.css'})
 })
 app.get('/homepage', (req, res) => {
     res.render('homepage', {title: 'Homepage', style: '/homepage-style.css'})
+})
 
-
-    // Send a document to the database collection
-    const data = {header: 'Hello World.', body:'Hello to the whole world!'};
-
-    blog_model.create(data)
+// Handle POST requests
+app.post('/register', (req, res) => {
+    // Save the incoming data from the form to the database
+    const document = new blog_model(req.body)
+    document.save()
         .then(result => {
-            console.log('Data saved to the database!')
+            console.log('Data saved to the database collection')
+            res.redirect('login')
+        }) 
+        .catch(error => {
+            console.log(error)
+        })
+})
+app.post('/login', (req, res) => {
+    // Validate login information from the database
+    const login_information = req.body
+    console.log(`Username: ${login_information.username}`)
+    console.log(`Password: ${login_information.password}`)
+
+    blog_model.find({ username: login_information.username, password: login_information.password })
+        .then(result => {
+            if(result.length == 0){
+                console.log('Authentication unsuccessful.')
+                res.send('Authentication unsuccessful.')
+            }else{
+                res.redirect('homepage')
+            }
+        })
+        .catch(error => {
+            console.log(error)
         })
 })
