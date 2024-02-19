@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const blog_schema = new mongoose.Schema({
+const register_schema = new mongoose.Schema({
     fname: {
         type: String,
         required: true
@@ -23,6 +23,6 @@ const blog_schema = new mongoose.Schema({
     }
 })
 
-const blog_model = mongoose.model('blog', blog_schema)
+const register_model = mongoose.model('client-info', register_schema)
 
-module.exports = blog_model
+module.exports = register_model

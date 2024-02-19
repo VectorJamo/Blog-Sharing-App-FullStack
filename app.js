@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const blog_model = require('./schemas/blog-schema')
+const register_model = require('./schemas/register-schema')
 const fs = require('fs')
 
 const app = express()
@@ -40,14 +40,11 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register', {title: 'Register an account', style: '/reg-style.css'})
 })
-app.get('/homepage', (req, res) => {
-    res.render('homepage', {title: 'Homepage', style: '/homepage-style.css'})
-})
 
 // Handle POST requests
 app.post('/register', (req, res) => {
     // Save the incoming data from the form to the database
-    const document = new blog_model(req.body)
+    const document = new register_model(req.body)
     document.save()
         .then(result => {
             console.log('Data saved to the database collection')
@@ -63,13 +60,13 @@ app.post('/login', (req, res) => {
     console.log(`Username: ${login_information.username}`)
     console.log(`Password: ${login_information.password}`)
 
-    blog_model.find({ username: login_information.username, password: login_information.password })
+    register_model.find({ username: login_information.username, password: login_information.password })
         .then(result => {
             if(result.length == 0){
                 console.log('Authentication unsuccessful.')
                 res.send('Authentication unsuccessful.')
             }else{
-                res.redirect('homepage')
+                res.render('homepage', {title: 'Homepage', style: '/homepage-style.css'})
             }
         })
         .catch(error => {
