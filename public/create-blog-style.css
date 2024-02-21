@@ -1,0 +1,112 @@
+:root {
+
+    --color-black: rgb(35, 35, 35);
+    --color-white: rgb(220, 220, 220);
+    --color-blue: rgb(48, 167, 167);
+    
+    --site-font-family: 'Merriweather';
+    --site-border-radius: 0.25rem;
+
+    font-size: 18px;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: var(--site-font-family);
+}
+
+hr {
+    box-shadow: 0px 0px 5px var(--color-blue);
+    margin-bottom: 1rem;
+}
+
+body {
+    color: var(--color-white);
+    background: var(--color-black);
+    padding: 1rem;
+}
+
+header, nav, main, footer, section {
+    max-width: 1200px;
+    margin: auto;
+}
+footer {
+    text-align: center;
+    margin-top: 4rem;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+a{
+    color: var(--color-blue);
+    text-decoration: underline;
+}
+
+.divider {
+    box-shadow: 0px 0px 1px var(--color-blue);
+}
+section {
+    margin-top: 2rem;
+    text-align: center;
+}
+section h2 {
+    display: inline-block;
+}
+main {
+    margin-top: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin: 0rem 0rem 0.25rem 0rem;
+}
+.input-component {
+    margin: 0rem 0rem 1rem 0rem;
+}
+
+form {
+    width: 40%;
+}
+
+input[type='text'], textarea {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 16px;
+    padding: 0.5rem;
+    border-radius: calc(var(--site-border-radius)*1.5);
+
+    border: none;
+    background: var(--color-white);
+}
+input[type='submit'] {
+    border: 2px solid var(--color-blue);
+    background: none;
+    color: var(--color-white);
+    font-size: 18px;
+    border-radius: calc(var(--site-border-radius)*1.5);
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    
+    transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+input[type='text']:focus, textarea:focus {
+    outline: none;
+}
+input[type='submit']:hover {
+    background: var(--color-blue);
+    color: var(--color-black);
+}
+

@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const register_model = require('./schemas/register-schema')
+const blog_model = require('./schemas/blog-schema')
 const fs = require('fs')
 
 const app = express()
@@ -40,6 +41,21 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register', {title: 'Register an account', style: '/reg-style.css'})
 })
+app.get('/homepage', (req, res) => {
+    blog_model.find()
+        .then(blogs => {
+            res.render('homepage', {title: 'Homepage', style: '/homepage-style.css', blogs: blogs})
+        })
+        .catch(error => {
+            console.log(error)
+        })
+})
+app.get('/about', (req, res) => {
+    res.redirect('homepage')
+})
+app.get('/create', (req, res) => {
+    res.render('create-blog', {title: 'Create a new blog', style:'/create-blog-style.css'})
+})
 
 // Handle POST requests
 app.post('/register', (req, res) => {
@@ -57,8 +73,6 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
     // Validate login information from the database
     const login_information = req.body
-    console.log(`Username: ${login_information.username}`)
-    console.log(`Password: ${login_information.password}`)
 
     register_model.find({ username: login_information.username, password: login_information.password })
         .then(result => {
@@ -66,10 +80,24 @@ app.post('/login', (req, res) => {
                 console.log('Authentication unsuccessful.')
                 res.send('Authentication unsuccessful.')
             }else{
-                res.render('homepage', {title: 'Homepage', style: '/homepage-style.css'})
+                res.redirect('homepage')  
             }
         })
         .catch(error => {
             console.log(error)
         })
+})
+
+app.post('/create', (req, res) => {
+    // Send the data to the database
+    const document = blog_model({...(req.body), createdBy: 'User'})
+
+    document.save()
+        .then(result => {
+            console.log('New blog saved to the database collection!')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        res.redirect('homepage')
 })

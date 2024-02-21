@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header') %>
+<body>
+
+    <header>
+        <h1>Share Blogs</h1>
+        <hr>
+    </header>
+    <nav>
+        <a href="/homepage">Home</a>
+        <span class="divider">&#124;</span>
+        <a href="/about">About</a>
+        <span class="divider">&#124;</span>
+        <a href="/create">Create a Blog</a>
+    </nav>
+
+    <section>
+        <h2>
+            Create a blog post
+            <hr>
+        </h2>
+    </section>
+    <main>
+        <form action="/create" method="POST">
+            <div class="input-component">
+                <label for="header">Header</label>
+                <input type="text" id="header" name="header" placeholder="blog header">
+            </div>
+
+            <div class="input-component">
+                <label for="body">Body</label>
+                <textarea rows="10" colums="50" id="body" name="body" placeholder="blog body"></textarea>
+            </div>
+
+            <input type="submit" value="Post Blog">
+            
+        </form>
+    </main>
+
+    <footer>
+        Copyright &copy; Suraj Neupane 2024
+    </footer>
+</body>
+</html>

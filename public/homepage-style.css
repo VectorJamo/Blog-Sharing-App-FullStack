@@ -7,7 +7,7 @@
     --site-font-family: 'Merriweather';
     --site-border-radius: 0.25rem;
 
-    font-size: 16px;
+    font-size: 18px;
 }
 
 *, ::before, ::after {
@@ -19,11 +19,51 @@
 }
 
 hr {
-    box-shadow: 0px 0px 10px var(--color-blue);
+    box-shadow: 0px 0px 5px var(--color-blue);
     margin-bottom: 1rem;
 }
 
 body {
     color: var(--color-white);
     background: var(--color-black);
+    padding: 1rem;
+}
+
+header, nav, main, footer {
+    max-width: 1200px;
+    margin: auto;
+}
+footer {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+a{
+    color: var(--color-blue);
+    text-decoration: underline;
+}
+
+.divider {
+    box-shadow: 0px 0px 1px var(--color-blue);
+}
+main {
+    margin-top: 4rem;
+}
+main h3 {
+    display: inline-block;
+}
+
+section p{
+    font-size: 16px;
+}
+
+.blog {
+    margin-bottom: 1rem;
 }

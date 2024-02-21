@@ -2,7 +2,36 @@
 <html lang="en">
     <%- include('./partials/header') %>
 <body>
-    This is the homepage!
+
+    <header>
+        <h1>Share Blogs</h1>
+        <hr>
+    </header>
+    <nav>
+        <a href="/homepage">Home</a>
+        <span class="divider">&#124;</span>
+        <a href="/about">About</a>
+        <span class="divider">&#124;</span>
+        <a href="/create">Create a Blog</a>
+    </nav>
+    <main>
+        <h3>
+            Current Blogs:
+            <hr> 
+        </h3>
+
+        <section class="blogs">
+            <% blogs.forEach(blog => { %>
+                <div class="blog">
+                    <h4><%= blog.header %></h4>
+                    <p><%= blog.body %></p>
+                </div>
+            <%})%>
+        </section>
+    </main>
+    <footer>
+        Copyright &copy; Suraj Neupane 2024
+    </footer>
     
 </body>
 </html>
