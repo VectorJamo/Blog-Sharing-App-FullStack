@@ -1,0 +1,31 @@
+:root {
+    /* Site dimensions */
+    --site-content-width: 72rem; /* 1152px */
+    
+    /* Site font specs */
+    --site-ff: 'Open Sans';
+    --site-fw: 400;
+    --nav-fs: 18px;
+    
+    /* Site colors*/
+    --color-black: rgb(35, 35, 35);
+    --color-white: rgb(225, 225, 225);
+    --color-blue: rgb(48, 167, 167);
+    --color-red: rgb(209, 67, 96);
+}
+
+.login-button, .register-button, .blogs-button, .logout-button {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.homepage-body {
+    padding: 2rem;
+}
+
+
+/* Forms styles */
+
+
+

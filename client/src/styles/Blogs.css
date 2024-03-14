@@ -1,0 +1,127 @@
+:root {
+    /* Site dimensions */
+    --site-content-width: 72rem; /* 1152px */
+    
+    /* Site font specs */
+    --site-ff: 'Open Sans';
+    --site-fw: 400;
+    --nav-fs: 18px;
+    
+    /* Site colors*/
+    --color-black: rgb(35, 35, 35);
+    --color-white: rgb(225, 225, 225);
+    --color-blue: rgb(48, 167, 167);
+    --color-red: rgb(209, 67, 96);
+}
+
+.blogs-body {
+    padding: 2rem;
+}
+
+.blogs-content-title {
+    text-align: center;
+}
+.blogs-content {
+    max-width: var(--site-content-width);
+    margin: auto;
+}
+.blog-post {
+    width: 50%;
+    margin: 1rem auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+}
+.blog-post-left h2 {
+    background: var(--color-blue);
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    
+}
+#blog-post {
+    border-radius: 0.25rem;
+    width: 300px;
+    padding: 1rem;
+    margin: 0;
+    background: var(--color-black);
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    resize: none;
+}
+#blog-post:focus {
+    outline: none;
+}
+
+.modal, .blog-view-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content, .blog-view-modal-content {
+    border: 2px dashed var(--color-blue);
+    border-radius: 0.25rem;
+    width: 720px;
+    background: var(--color-black);
+    padding: 1rem;
+
+}
+.modal-content h3 {
+    text-align: center;
+}
+.blog-post-component {
+    margin-bottom: 2rem;
+}
+.blog-post-component label {
+    display: block;
+}
+
+#title, #body {
+    background: var(--color-black);
+    border: 2px solid var(--color-white);
+    color: var(--color-white);
+    resize: none;
+    margin: 0;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+
+}
+#title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+#body:focus {
+    outline: none;
+
+}
+
+hr {
+    margin-bottom: 1rem;
+}
+
+.all-blogs-content {
+    margin-top: 2rem;
+}
+.all-blogs-title {
+    text-align: center;
+}
+.blog-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 1.5rem 0rem;
+}
