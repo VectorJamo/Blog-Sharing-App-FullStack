@@ -5,7 +5,6 @@ const fs = require('fs')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-
 function checkAuthenticated(req) {
     // If, the user is authenticated, it will return the name of the authenticated user, if not, it will return null
     // Validate the cookie
