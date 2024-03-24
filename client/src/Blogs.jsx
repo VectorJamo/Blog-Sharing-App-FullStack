@@ -81,7 +81,7 @@ export default function Blogs() {
             return blogBody.substring(0, maxLength) + ' ....'
         }else{
             return blogBody
-        }           
+        }
     }
 
     function handleDeleteBlog(title, body, user) {

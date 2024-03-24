@@ -16,28 +16,22 @@ function checkAuthenticated(req) {
         }else{
             // Validate the cookie
             // First, load the secret string
-            fs.readFile('./secrets/jwt-string.txt', 'utf-8', (err, data) => {
+            jwt.verify(token, process.env.JWT_STRING, (err, decodedToken) => {
                 if(err){
-                    console.log(err)
-                    reject('Cannot load secret string')
+                    // Token is invalid
+                    console.log(err.message)
+                    resolve(null)
+                }else{
+                    // Get the user's name from the decoded ID
+                    userModel.findById(decodedToken.id)
+                        .then(document => {
+                            resolve(document.username)
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            resolve(null)
+                        })
                 }
-                jwt.verify(token, data, (err, decodedToken) => {
-                    if(err){
-                        // Token is invalid
-                        console.log(err.message)
-                        resolve(null)
-                    }else{
-                        // Get the user's name from the decoded ID
-                        userModel.findById(decodedToken.id)
-                            .then(document => {
-                                resolve(document.username)
-                            })
-                            .catch(error => {
-                                console.log(error)
-                                resolve(null)
-                            })
-                    }
-                })
             })
         }
 
@@ -81,16 +75,11 @@ function login_post(req, res) {
             if(result == true){
                 // Send a JWT cookie
                 const id = document._id
-                fs.readFile('./secrets/jwt-string.txt', 'utf-8', (err, data) => {
-                    if(err){
-                        return;
-                    }
-                    const token = jwt.sign({id}, data)
-    
-                    res.cookie('jwt', token)
-                    responseObject.success = true
-                    res.status(200).json(responseObject)
-                })
+                const token = jwt.sign({id}, process.env.JWT_STRING)
+
+                res.cookie('jwt', token)
+                responseObject.success = true
+                res.status(200).json(responseObject)
             }else{
                 console.log('NOT MATCH')
                 res.status(200).json(responseObject)
@@ -129,18 +118,16 @@ async function register_post(req, res) {
         console.log('Document saved to the database!')
 
         //Create and send a JWT cookie
-        fs.readFile('./secrets/jwt-string.txt', 'utf-8', (err, data) => {
-            const id = document._id
-            const token = jwt.sign({id}, data)
-            console.log(token)
+        const id = document._id
+        const token = jwt.sign({id}, process.env.JWT_STRING)
+        console.log(token)
+        
+        res.cookie('jwt', token, { 
+            httpOnly: false, // Cookie accessible only by the server
+            sameSite: 'None', // Allow cookies to be sent in cross-origin requests
             
-            res.cookie('jwt', token, { 
-                httpOnly: false, // Cookie accessible only by the server
-                sameSite: 'None', // Allow cookies to be sent in cross-origin requests
-                
-            });        
-            res.status(200).send('SUCCESS')
-        })
+        });        
+        res.status(200).send('SUCCESS')
 
     }catch(error){
         // First, handle any duplicate fields error
