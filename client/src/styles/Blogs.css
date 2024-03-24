@@ -20,6 +20,10 @@
     position: relative;
 }
 
+.disable-scroll {
+    overflow: hidden;
+}
+
 .blogs-content-title {
     text-align: center;
 }
@@ -69,7 +73,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    padding: 2rem;
 }
 
 .modal-content, .blog-view-modal-content {
