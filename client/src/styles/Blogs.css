@@ -58,7 +58,7 @@
     color: var(--color-white);
     resize: none;
 }
-#blog-post:focus {
+#blog-post:focus, #comment:focus {
     outline: none;
 }
 
@@ -67,7 +67,7 @@
     left: 0;
     top: 0;
     
-    width: 100vw;
+    width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
 
@@ -84,6 +84,8 @@
     width: 720px;
     background: var(--color-black);
     padding: 1rem;
+    height: 80vh;
+    overflow: scroll;
 
 }
 .modal-content h3 {
@@ -96,7 +98,7 @@
     display: block;
 }
 
-#title, #body {
+#title, #body, #comment {
     background: var(--color-black);
     border: 2px solid var(--color-white);
     color: var(--color-white);
@@ -112,7 +114,6 @@
 }
 #body:focus {
     outline: none;
-
 }
 
 hr {
@@ -132,4 +133,7 @@ hr {
     align-items: center;
 
     margin: 1.5rem 0rem;
+}
+.comments {
+    margin-top: 2rem;
 }

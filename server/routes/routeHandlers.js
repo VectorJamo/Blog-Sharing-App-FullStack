@@ -199,4 +199,26 @@ async function delete_post(req, res) {
     }
 }
 
-module.exports = {homepage_get, login_get, login_post, register_get, register_post, logout_get, blogs_get, allblogs_get, create_blog_post, delete_post}
+async function comments_post(req, res) {
+    try {
+        const {comment, author, id} = req.body
+        res.status(200).send('SUCCESS')
+
+        const document = await blogModel.findById(id)
+
+        const exisitingComments = document.comments
+        exisitingComments.push({author, comment})
+
+        document.comments = exisitingComments;
+
+        const updatedDoc = await document.save()
+        console.log(updatedDoc)
+
+    }catch(err) {
+        res.status(400).send('ERROR')
+
+    }
+}
+
+module.exports = {homepage_get, login_get, login_post, register_get, register_post, logout_get, 
+                  blogs_get, allblogs_get, create_blog_post, delete_post, comments_post}

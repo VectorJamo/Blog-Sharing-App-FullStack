@@ -13,5 +13,6 @@ router.get('/blogs', routeHandlers.blogs_get)
 router.get('/allblogs', routeHandlers.allblogs_get)
 router.post('/create-blog', routeHandlers.create_blog_post)
 router.post('/delete-blog', routeHandlers.delete_post)
+router.post('/add-comment', routeHandlers.comments_post)
 
 module.exports = {router}

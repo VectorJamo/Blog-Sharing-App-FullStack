@@ -12,6 +12,10 @@ const blogSchema = new mongoose.Schema({
     user: {
         type: String,
         required: true
+    },
+    comments: {
+        type: Array,
+        required: false
     }
 })
 
